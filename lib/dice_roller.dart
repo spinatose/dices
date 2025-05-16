@@ -11,6 +11,8 @@ class DiceRoller extends StatefulWidget {
 }
 
 class _DiceRollerState extends State<DiceRoller> {
+  final random = Random(); // Used to generate random numbers for the dice rolls.
+
   // This state class manages the state of the DiceRoller widget.
   // It keeps track of the current dice images and handles the rolling logic.
   int dice1 = 1;
@@ -19,6 +21,8 @@ class _DiceRollerState extends State<DiceRoller> {
   int dice4 = 1;
   int dice5 = 1;
   int dice6 = 1;
+
+  // Eventually. will have this exposed so that the user can choose the order of the dice.
   bool sortAscending = false;
 
   @override
@@ -67,8 +71,6 @@ class _DiceRollerState extends State<DiceRoller> {
       // This function is called when the "Roll Dice" button is pressed.
       // It will generate a random number between 1 and 6 to simulate rolling a die.
       setState(() {
-        final random = Random();
-
         // Generate random numbers for each die        
         List<int> diceValues = List.generate(6, (index) => random.nextInt(6) + 1);
         diceValues.sort((a, b) => (sortAscending) ? a.compareTo(b) : b.compareTo(a));
